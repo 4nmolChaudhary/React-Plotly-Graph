@@ -1,30 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import Plot from 'react-plotly.js'
-import Plotly from 'plotly.js'
-//import Data from '../data/Data.json'
+import Data from '../data/Data.json'
 
 function Graph1() {
 	const [data, setData] = useState()
 
 	useEffect(() => {
 		;(async () => {
-			Plotly.d3.csv('https://raw.githubusercontent.com/4nmolChaudhary/Assets/master/bandwidth.csv', function (data) {
-				processData(data)
+			const dates = Data.map(instance => {
+				const x = new Date(instance.Date.replace(/(\d{2})-(\d{2})-(\d{4})/, '$2/$1/$3'))
+				return x.toISOString().split('T')[0]
 			})
-
-			function processData(Data) {
-				const dates = Data.map(instance => {
-					const x = new Date(instance.Date.replace(/(\d{2})-(\d{2})-(\d{4})/, '$2/$1/$3'))
-					return x.toISOString().split('T')[0]
-				})
-				const bandwidth = Data.map(instance => instance.bandwidth)
-				const transmit = Data.map(instance => instance.Transmit)
-				const rec = Data.map(instance => instance.Receive)
-				const trace1 = { type: 'scatter', mode: 'lines', name: 'Bandwidth', x: dates, y: bandwidth, line: { color: '#17BECF' } }
-				const trace2 = { type: 'scatter', mode: 'lines', name: 'Receive', x: dates, y: rec, line: { color: '#7F7F7F' } }
-				const trace3 = { type: 'scatter', mode: 'lines', name: 'Transmit', x: dates, y: transmit, line: { color: '#00CCFF' } }
-				setData([trace1, trace2, trace3])
-			}
+			const bandwidth = Data.map(instance => instance.bandwidth)
+			const transmit = Data.map(instance => instance.Transmit)
+			const rec = Data.map(instance => instance.Receive)
+			const trace1 = { type: 'scatter', mode: 'lines', name: 'Bandwidth', x: dates, y: bandwidth, line: { color: '#17BECF' } }
+			const trace2 = { type: 'scatter', mode: 'lines', name: 'Receive', x: dates, y: rec, line: { color: '#7F7F7F' } }
+			const trace3 = { type: 'scatter', mode: 'lines', name: 'Transmit', x: dates, y: transmit, line: { color: '#00CCFF' } }
+			setData([trace1, trace2, trace3])
 		})()
 	}, [])
 
