@@ -1,18 +1,21 @@
 @font-face {
-  font-family: 'GoogleSans-Bold';
-  src: url('fonts/GoogleSans-Bold.ttf');
+	font-family: 'GoogleSans-Bold';
+	src: url('fonts/GoogleSans-Bold.ttf');
 }
 @font-face {
-  font-family: 'GoogleSans-Regular';
-  src: url('fonts/GoogleSans-Regular.ttf');
+	font-family: 'GoogleSans-Regular';
+	src: url('fonts/GoogleSans-Regular.ttf');
 }
 .App {
-  font-family: 'GoogleSans-Regular', sans-serif;
-  display: flex;
-  flex-direction: column;
-  font-weight: 900;
-  height: 100vh;
-  font-size: 16px;
-  justify-content: center;
-  align-items: center;
+	font-family: 'GoogleSans-Regular', sans-serif;
+	display: flex;
+	flex-direction: column;
+	font-weight: 900;
+	height: 100vh;
+	font-size: clamp(16px, 24px, 32px);
+	justify-content: center;
+	align-items: center;
+}
+h1 {
+	font-size: clamp(1rem, 10vw, 2rem);
 }

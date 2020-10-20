@@ -1,18 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './App.css'
-import axios from 'axios'
 
 function App() {
-	useEffect(() => {
-		;(async () => {
-			const response = await axios.get(`http://192.168.1.51:9090/api/v1/query?query=ifSpeed&start=2020-06-01T20:10:30.781Z&end=2020-10-19T20:11:00.781Z`)
-			console.log(response.data)
-		})()
-	}, [])
-
 	return (
 		<div className="App">
-			<h1>Graph Testing</h1>
+			<iframe title="graph" src="http://localhost:3001/d-solo/2KFTmCOGk/netvisual?var-project=test&orgId=1&refresh=30s&from=1603164171913&to=1603185771913&var-devices=10.1.1.1&var-interfaces=FastEthernet0%2F0&panelId=12" width="1200" height="400" frameborder="0"></iframe>
 		</div>
 	)
 }
