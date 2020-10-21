@@ -19,3 +19,18 @@
 h1 {
 	font-size: clamp(1rem, 10vw, 2rem);
 }
+/*graphs colors*/
+:root {
+	--g1Line: #636efa;
+	--g1Fill: #b0b6fd;
+	--g2Line: #ef553b;
+	--g2Fill: #eaa099;
+	--g3Line: #17cc96;
+	--g3Fill: #81e5cb;
+	--g4Line: #ab63fa;
+	--g4Fill: #d5affd;
+	--g5Line: #fea15a;
+	--g5Fill: #fed0ad;
+	--g6Line: #19d3f3;
+	--g6Fill: #81e9f9;
+}
