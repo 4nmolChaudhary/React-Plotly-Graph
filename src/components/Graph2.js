@@ -57,7 +57,7 @@ function Graph2() {
 			x: 0.0,
 		},
 		legend: { font: { family: 'GoogleSans-Regular', size: 12 }, legend: { orientation: 'h' } },
-		xaxis: { autorange: true, type: 'dates', tickfont: { family: 'GoogleSans-Regular' }, rangeselector: rangeselector, rangeslider: { range: ['2020-10-21 14:43:23', '2020-10-21 14:51:23'] }, range: ['2020-10-21 14:43:23', '2020-10-21 14:51:23'] },
+		xaxis: { autorange: true, type: 'dates', tickfont: { family: 'GoogleSans-Regular' }, rangeselector: rangeselector, rangeslider: {} },
 		yaxis: { autorange: true, range: [1, 100], type: 'linear', ticksuffix: ' Mbps', tickfont: { family: 'GoogleSans-Regular' } },
 		width: 1000,
 		height: 400,
