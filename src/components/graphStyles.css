@@ -1,8 +1,13 @@
+.flex {
+	display: flex;
+	align-items: center;
+}
 .device_bandwidth_graph {
 	padding: 0px 20px;
 	background: #fff;
 	border-radius: 4px;
 	overflow: hidden;
+	position: relative;
 }
 .gauges {
 	display: grid;
@@ -12,7 +17,8 @@
 	margin-top: 8px;
 	width: 100%;
 }
-.gauge {
+.gauge,
+.header {
 	background: #fff;
 	color: #444;
 	font-size: 22px;
@@ -22,4 +28,68 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+.expand-button {
+	background: none;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	padding: 4px;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	right: 0;
+	bottom: 0;
+}
+.expand-button:hover {
+	background: #f1f1f1;
+	border-radius: 25px;
+}
+.modal {
+	border: none;
+	outline: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow-y: scroll;
+}
+.troubleshooting-modal {
+	width: 90%;
+	height: 110vh;
+	padding: 50px 25px;
+	font-family: 'GoogleSans-Bold';
+	background: #f1f1f1;
+	outline: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin: auto;
+}
+.troubleshooting-modal h2 {
+	margin: 0;
+	font-size: 24px;
+}
+.table {
+	font-family: 'GoogleSans-Regular';
+	margin: 10px 0;
+	font-size: 14px;
+}
+.header {
+	font-family: 'GoogleSans-Bold';
+	text-align: left;
+	padding: 15px;
+	font-size: 22px;
+	margin-bottom: 10px;
+}
+.header svg {
+	margin-right: 8px;
+	cursor: pointer;
+}
+.table-th {
+	text-align: left;
+	padding: 20px 0 20px 28px;
+}
+.tableheader {
+	background: #f6f6f6;
+	padding: 20px 0px;
 }

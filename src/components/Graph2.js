@@ -3,11 +3,13 @@ import Plot from 'react-plotly.js'
 import moment from 'moment'
 import axios from 'axios'
 import './graphStyles.css'
+import TroubleShootingView from './TroubleShootingView'
 
 function Graph2() {
 	const [data, setData] = useState()
 	const [avgT, setAvgT] = useState()
 	const [avgR, setAvgR] = useState()
+	const [open, setOpen] = useState(false)
 
 	useEffect(() => {
 		;(async () => {
@@ -21,20 +23,13 @@ function Graph2() {
 				values.push(Math.random() * 100)
 				vals.push(Math.random() * 100)
 			}
-			console.log(dates)
+
 			const alert = [dates[12], Math.max(...values), dates[30], 45]
 			const anomaly = [dates[17], values[17]]
-			console.log(alert)
-			setAvgR(
-				values.reduce(function (sum, a) {
-					return sum + a
-				}, 0) / (values.length || 1)
-			)
-			setAvgT(
-				vals.reduce(function (sum, a) {
-					return sum + a
-				}, 0) / (vals.length || 1)
-			)
+
+			setAvgR(values.reduce((sum, a) => sum + a, 0) / (values.length || 1))
+			setAvgT(vals.reduce((sum, a) => sum + a, 0) / (vals.length || 1))
+
 			//fill: 'toself', hoveron: 'points+fills',fillcolor: '#b0b6fd'
 			const trace1 = { type: 'scatter', mode: 'lines', name: 'Receive', x: dates, y: values, line: { color: '#636efa' } }
 			const trace2 = { type: 'scatter', mode: 'lines', name: 'Transmit', x: dates, y: vals, line: { color: '#17cc96' } }
@@ -67,10 +62,16 @@ function Graph2() {
 	const config = {
 		displaylogo: false,
 	}
+
 	return (
 		<div>
 			<div className="device_bandwidth_graph">
 				<Plot data={data} layout={Layout} config={config} />
+				<button className="expand-button" onClick={() => setOpen(true)}>
+					<svg className="w-6 h-6" fill="#000" stroke="#000" viewBox="0 0 24 24" height="24px" width="24px">
+						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+					</svg>
+				</button>
 			</div>
 			<div className="gauges">
 				<div className="gauge">
@@ -80,6 +81,7 @@ function Graph2() {
 					Average Receive <span style={{ color: '#636efa' }}>{Math.round(avgR)} Mbps</span>
 				</div>
 			</div>
+			<TroubleShootingView open={open} onClose={() => setOpen(false)} data={data} avgT={avgT} avgR={avgR} config={config} rangeselector={rangeselector} />
 		</div>
 	)
 }
