@@ -13,7 +13,7 @@ function Graph2() {
 
 	useEffect(() => {
 		;(async () => {
-			const response = await axios.get(`http://192.168.1.51:9090/api/v1/query?query=ifInOctets{ifDescr=%22FastEthernet0/0%22,instance=%2210.1.1.1%22,job=%22snmp%22}[3h]`)
+			const response = await axios.get(`http://192.168.1.51:9090/api/v1/query?query=ifInOctets{ifDescr=%22FastEthernet0/0%22,instance=%2210.1.1.1%22,job=%22snmp%22}[30m]`)
 			const data = response.data.data.result[0].values
 			const dates = []
 			const values = []
@@ -31,8 +31,8 @@ function Graph2() {
 			setAvgT(vals.reduce((sum, a) => sum + a, 0) / (vals.length || 1))
 
 			//fill: 'toself', hoveron: 'points+fills',fillcolor: '#b0b6fd'
-			const trace1 = { type: 'scatter', mode: 'lines', name: 'Receive', x: dates, y: values, line: { color: '#636efa' } }
-			const trace2 = { type: 'scatter', mode: 'lines', name: 'Transmit', x: dates, y: vals, line: { color: '#17cc96' } }
+			const trace1 = { type: 'scatter', mode: 'lines', name: 'Receive', x: dates, y: values, line: { color: '#636efa', width: 1 } }
+			const trace2 = { type: 'scatter', mode: 'lines', name: 'Transmit', x: dates, y: vals, line: { color: '#17cc96', width: 1 } }
 			const trace4 = { type: 'scatter', mode: 'markers', name: 'Anomaly', x: [anomaly[0]], y: [anomaly[1]], marker: { color: '#FFBA08', size: 8, line: { color: '#121212', width: 2 } } }
 			const trace3 = { type: 'bar', width: 8, name: 'Alert', x: [alert[0], alert[2]], y: [alert[1], alert[3]], marker: { color: ' #eaa099', line: { dash: 'dot', color: '#EB5160', width: 15 } } }
 			setData([trace1, trace2, trace3, trace4])
